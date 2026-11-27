@@ -344,12 +344,13 @@
   <a href="#etapa-7">7. Cadastro (POST)</a>
   <a href="#etapa-8">8. Consulta (GET)</a>
   <a href="#etapa-9">9. Atualização (PUT)</a>
+  <a href="#etapa-10">10. Exclusão (DELETE)</a>
 </nav>
 
 <main>
   <section id="etapa-1">
 
-    <span class="etapa-tag">ETAPA 1 DE 9</span>
+    <span class="etapa-tag">ETAPA 1 DE 10</span>
     <h1>Modelagem do Banco de Dados</h1>
     <p class="intro">O Papyro é um sistema computacional de gerenciamento de uma biblioteca escolar, construído como uma API REST (Representational State Transfer) em Node JS, com o Express e o banco de dados MySQL. Antes do código, vamos entender quais dados a biblioteca escolar guarda e como eles se relacionam.</p>
 
@@ -398,7 +399,7 @@
 
   <section id="etapa-2">
 
-    <span class="etapa-tag">ETAPA 2 DE 9</span>
+    <span class="etapa-tag">ETAPA 2 DE 10</span>
     <h1>Construção do Banco de Dados</h1>
     <p class="intro">Agora vamos transformar o DER em tabelas reais no MySQL, com um arquivo SQL (Structured Query Language).</p>
 
@@ -503,7 +504,7 @@
 
   <section id="etapa-3">
 
-    <span class="etapa-tag">ETAPA 3 DE 9</span>
+    <span class="etapa-tag">ETAPA 3 DE 10</span>
     <h1>Construção do Backend</h1>
     <p class="intro">O navegador da web não se conecta direto ao banco de dados. Essa ponte é o backend, que vamos construir em linguagem de programação JavaScript, com o Node JS e o Express. Nesta etapa, vamos preparar apenas o servidor da web, ainda sem o banco de dados.</p>
 
@@ -625,7 +626,7 @@ app.listen(porta, () =&gt; {
 
   <section id="etapa-4">
 
-    <span class="etapa-tag">ETAPA 4 DE 9</span>
+    <span class="etapa-tag">ETAPA 4 DE 10</span>
     <h1>Conexão com o Banco de Dados</h1>
     <p class="intro">Agora vamos preparar a conexão do backend com o MySQL. Os dados de acesso ao banco de dados ficam em um arquivo de variáveis de ambiente, separados do código.</p>
 
@@ -720,7 +721,7 @@ module.exports = conexao;</pre>
 
   <section id="etapa-5">
 
-    <span class="etapa-tag">ETAPA 5 DE 9</span>
+    <span class="etapa-tag">ETAPA 5 DE 10</span>
     <h1>Teste da Conexão com o Banco de Dados</h1>
     <p class="intro">Nesta etapa, vamos importar a conexão no <code>app.js</code> e testá-la sempre que o servidor da web iniciar, antes de criar as rotas da API.</p>
 
@@ -853,7 +854,7 @@ app.listen(porta, <span class="kw">async</span> () =&gt; {
 
   <section id="etapa-6">
 
-    <span class="etapa-tag">ETAPA 6 DE 9</span>
+    <span class="etapa-tag">ETAPA 6 DE 10</span>
     <h1>Estrutura do Backend em Camadas</h1>
     <p class="intro">Com quatro tabelas e várias rotas da API, o <code>app.js</code> ficaria grande e difícil de manter. Por isso, o backend do Papyro será organizado em camadas, inspiradas no padrão MVC (Model-View-Controller), em que cada pasta tem uma única responsabilidade.</p>
 
@@ -951,7 +952,7 @@ app.listen(porta, <span class="kw">async</span> () =&gt; {
 
   <section id="etapa-7">
 
-    <span class="etapa-tag">ETAPA 7 DE 9</span>
+    <span class="etapa-tag">ETAPA 7 DE 10</span>
     <h1>Rotas de Cadastro (POST)</h1>
     <p class="intro">Agora vamos criar o cadastro de registros com o método POST nas quatro tabelas. A ordem segue as chaves estrangeiras, primeiro o livro e o leitor, depois o exemplar, que depende do livro, e por último o empréstimo, que depende do leitor e do exemplar.</p>
 
@@ -1728,7 +1729,7 @@ app.listen(porta, <span class="kw">async</span> () =&gt; {
 
   <section id="etapa-8">
 
-    <span class="etapa-tag">ETAPA 8 DE 9</span>
+    <span class="etapa-tag">ETAPA 8 DE 10</span>
     <h1>Rotas de Consulta (GET)</h1>
     <p class="intro">Agora vamos criar a consulta de registros com o método GET. Cada tabela terá uma rota que lista todos os registros e outra que busca um único registro pelo <code>id</code>. No exemplar e no empréstimo, a consulta junta as tabelas relacionadas, para mostrar o título do livro e o nome do leitor.</p>
 
@@ -2291,7 +2292,7 @@ module.exports = rotas;</pre>
 
   <section id="etapa-9">
 
-    <span class="etapa-tag">ETAPA 9 DE 9</span>
+    <span class="etapa-tag">ETAPA 9 DE 10</span>
     <h1>Rotas de Atualização (PUT)</h1>
     <p class="intro">Agora vamos criar a atualização de registros com o método PUT. No livro, no leitor e no exemplar, a rota recebe todos os campos e substitui os dados do registro indicado pelo <code>id</code>. No empréstimo, a rota registra a devolução do livro.</p>
 
@@ -2910,6 +2911,491 @@ module.exports = rotas;</pre>
     <div class="callout tip">
       <strong>Esperado nesta etapa</strong>
       Os erros devem devolver, na ordem, o status <code>409</code> (<code>Empréstimo já devolvido...</code>), o status <code>400</code> (<code>A data de devolução não pode ser anterior à data do empréstimo...</code>), o status <code>400</code> (<code>Informe as datas no formato AAAA-MM-DD...</code>) e o status <code>404</code> (<code>Empréstimo não encontrado...</code>).
+    </div>
+    <h2>Conferência Final</h2>
+    <h3>Passo 21 - Estrutura atual de pastas do projeto</h3>
+    <p>Nesta etapa só os controllers e as rotas foram alterados, então sua pasta de projeto continua assim:</p>
+    <div class="code-block">
+      <div class="lang-tag">estrutura de pastas<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre>Papyro em Node JS/
+│
+├── controllers/
+│   ├── loanController.js
+│   ├── itemController.js
+│   ├── readerController.js
+│   └── bookController.js
+│
+├── node_modules/
+│
+├── routes/
+│   ├── loanRoutes.js
+│   ├── itemRoutes.js
+│   ├── readerRoutes.js
+│   └── bookRoutes.js
+│
+├── .env
+├── Schema (Papyro).sql
+├── app.js
+├── database.js
+├── package-lock.json
+└── package.json</pre>
+    </div>
+
+  </section>
+
+  <section id="etapa-10">
+
+    <span class="etapa-tag">ETAPA 10 DE 10</span>
+    <h1>Rotas de Exclusão (DELETE)</h1>
+    <p class="intro">Agora vamos criar a exclusão de registros com o método DELETE, a última operação da API REST. Desta vez, a ordem é a inversa das chaves estrangeiras, começando pelo empréstimo, pois um registro só pode ser excluído quando nenhum outro registro depende dele.</p>
+
+    <h2>Passo a Passo</h2>
+    <div class="callout note">
+      <strong>Sobre o método DELETE</strong>
+      O DELETE apaga um registro indicado pelo <code>id</code> na URL, como <code>/emprestimos/3</code>, e não envia nada na aba <code>Body</code>. A exclusão não pode ser desfeita, por isso o controller confere antes se o registro existe e se nenhum outro registro depende dele.
+    </div>
+    <h2>Exclusão de Empréstimo</h2>
+    <h3>Passo 1 - Acrescente a função de exclusão ao controller de empréstimo</h3>
+    <p>No arquivo <code>controllers/loanController.js</code>, logo acima da linha <code>// Exporta as funções para que as rotas possam utilizá-las.</code>, adicione a função abaixo:</p>
+    <div class="code-block">
+      <div class="lang-tag">javascript — controllers/loanController.js<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre><span class="cm">// Exclui um empréstimo, de acordo com o id informado na URL.</span>
+<span class="kw">async</span> <span class="kw">function</span> excluir(req, res) {
+
+  <span class="cm">// Recebe o id informado na URL.</span>
+  <span class="kw">const</span> { id } = req.params;
+
+  <span class="kw">try</span> {
+
+    <span class="cm">// Busca o empréstimo informado para conferir o exemplar e a devolução dele.</span>
+    <span class="kw">const</span> [emprestimos] = <span class="kw">await</span> conexao.query(<span class="st">&quot;SELECT id_exemplar, data_devolucao FROM emprestimo WHERE id = ?&quot;</span>, [id]);
+
+    <span class="kw">if</span> (emprestimos.length === <span class="num">0</span>) {
+
+      <span class="cm">// Responde com o status 404 (não encontrado) e uma mensagem de erro.</span>
+      <span class="kw">return</span> res.status(<span class="num">404</span>).json({ erro: <span class="st">&quot;Empréstimo não encontrado...&quot;</span> });
+    }
+
+    <span class="cm">// Executa o SQL para excluir o empréstimo.</span>
+    <span class="kw">await</span> conexao.query(<span class="st">&quot;DELETE FROM emprestimo WHERE id = ?&quot;</span>, [id]);
+
+    <span class="cm">// Verifica se o empréstimo ainda não tinha sido devolvido.</span>
+    <span class="kw">if</span> (emprestimos[<span class="num">0</span>].data_devolucao === <span class="kw">null</span>) {
+
+      <span class="cm">// Executa o SQL para mudar a situação do exemplar para Disponivel.</span>
+      <span class="kw">await</span> conexao.query(<span class="st">&quot;UPDATE exemplar SET situacao = &#x27;Disponivel&#x27; WHERE id = ?&quot;</span>, [emprestimos[<span class="num">0</span>].id_exemplar]);
+    }
+
+    <span class="cm">// Responde com o status 200 (sucesso) e uma mensagem de sucesso.</span>
+    res.status(<span class="num">200</span>).json({ mensagem: <span class="st">&quot;Empréstimo excluído com sucesso!&quot;</span> });
+
+  } <span class="kw">catch</span> (erro) {
+
+    <span class="cm">// Mostra no terminal o erro, para o programador.</span>
+    console.log(<span class="st">&quot;Erro ao excluir o empréstimo: &quot;</span> + erro.message);
+
+    <span class="cm">// Responde com o status 500 (erro no servidor da web) e uma mensagem genérica.</span>
+    res.status(<span class="num">500</span>).json({ erro: <span class="st">&quot;Não foi possível atender sua requisição...&quot;</span> });
+  }
+}</pre>
+    </div>
+    <h3>Passo 2 - Exporte a nova função do controller de empréstimo</h3>
+    <p>Ainda no arquivo <code>controllers/loanController.js</code>, substitua o <code>module.exports</code> pelo bloco abaixo, que exporta também o <code>excluir</code>:</p>
+    <div class="code-block">
+      <div class="lang-tag">javascript — controllers/loanController.js<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre><span class="cm">// Exporta as funções para que as rotas possam utilizá-las.</span>
+module.exports = { cadastrar, listar, buscar, atualizar, excluir };</pre>
+    </div>
+    <h3>Passo 3 - Acrescente a rota de exclusão de empréstimo</h3>
+    <p>No arquivo <code>routes/loanRoutes.js</code>, acrescente a rota <code>DELETE</code> logo abaixo da rota de atualização. O arquivo completo deve ficar assim:</p>
+    <div class="code-block">
+      <div class="lang-tag">javascript — routes/loanRoutes.js<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre><span class="cm">// Importa o Express - Framework para Servidor da Web.</span>
+<span class="kw">const</span> express = require(<span class="st">&quot;express&quot;</span>);
+
+<span class="cm">// Importa o controller de empréstimo.</span>
+<span class="kw">const</span> controlador = require(<span class="st">&quot;../controllers/loanController&quot;</span>);
+
+<span class="cm">// Cria o roteador das rotas de empréstimo.</span>
+<span class="kw">const</span> rotas = express.Router();
+
+<span class="cm">// Rota que cadastra um novo empréstimo.</span>
+rotas.post(<span class="st">&quot;/&quot;</span>, controlador.cadastrar);
+
+<span class="cm">// Rota que lista todos os empréstimos.</span>
+rotas.get(<span class="st">&quot;/&quot;</span>, controlador.listar);
+
+<span class="cm">// Rota que busca um único empréstimo, de acordo com o id informado na URL.</span>
+rotas.get(<span class="st">&quot;/:id&quot;</span>, controlador.buscar);
+
+<span class="cm">// Rota que registra a devolução de um empréstimo, de acordo com o id informado na URL.</span>
+rotas.put(<span class="st">&quot;/:id&quot;</span>, controlador.atualizar);
+
+<span class="cm">// Rota que exclui um empréstimo, de acordo com o id informado na URL.</span>
+rotas.delete(<span class="st">&quot;/:id&quot;</span>, controlador.excluir);
+
+<span class="cm">// Exporta as rotas para que o app.js possa utilizá-las.</span>
+module.exports = rotas;</pre>
+    </div>
+    <h3>Passo 4 - Compreender a exclusão de empréstimo</h3>
+    <ul class="bullets">
+      <li><strong>excluir()</strong> recebe o <code>id</code> pela URL, como no GET por id e no PUT.</li>
+      <li><strong>DELETE FROM emprestimo WHERE id = ?</strong> apaga só a linha do empréstimo informado. Sem o <code>WHERE</code>, todos os empréstimos seriam apagados.</li>
+      <li>Se o empréstimo ainda não tinha sido devolvido (<code>data_devolucao</code> igual a <code>null</code>), o exemplar volta para <code>Disponivel</code>, pois não está mais emprestado.</li>
+      <li>Nenhuma tabela depende do empréstimo, por isso ele pode ser excluído sem outras verificações.</li>
+    </ul>
+    <h3>Passo 5 - Teste a exclusão de empréstimo</h3>
+    <p>Pare o servidor da web com as teclas <code>Ctrl + C</code> e execute novamente o comando <code>node app.js</code>. No Thunder Client, clique em <code>New Request</code>, escolha o método <code>DELETE</code>, digite a URL <code>http://localhost:3000/emprestimos/3</code> e clique em <code>Send</code>, sem nada na aba <code>Body</code>.</p>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      O Thunder Client deve exibir o status <code>200 OK</code> e a resposta <code>{&quot;mensagem&quot;: &quot;Empréstimo excluído com sucesso!&quot;}</code>.
+    </div>
+    <p>Confira a exclusão com uma requisição <code>GET</code> para a URL <code>http://localhost:3000/emprestimos/3</code>.</p>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      O Thunder Client deve exibir o status <code>404 Not Found</code> com a mensagem <code>Empréstimo não encontrado...</code>, pois o empréstimo não existe mais.
+    </div>
+    <p>Confira também o exemplar com uma requisição <code>GET</code> para a URL <code>http://localhost:3000/exemplares/3</code>.</p>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      O exemplar 3 deve aparecer com a situação <code>Disponivel</code>, pois o empréstimo excluído ainda não tinha sido devolvido.
+    </div>
+    <p>Teste os erros abaixo, um de cada vez, com o método <code>DELETE</code>:</p>
+    <ul class="bullets">
+      <li>Envie a exclusão para a URL <code>http://localhost:3000/emprestimos/99</code>, que não existe.</li>
+    </ul>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      O erro deve devolver o status <code>404</code> (<code>Empréstimo não encontrado...</code>).
+    </div>
+    <h2>Exclusão de Exemplar</h2>
+    <h3>Passo 6 - Acrescente a função de exclusão ao controller de exemplar</h3>
+    <p>No arquivo <code>controllers/itemController.js</code>, logo acima da linha <code>// Exporta as funções para que as rotas possam utilizá-las.</code>, adicione a função abaixo:</p>
+    <div class="code-block">
+      <div class="lang-tag">javascript — controllers/itemController.js<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre><span class="cm">// Exclui um exemplar, de acordo com o id informado na URL.</span>
+<span class="kw">async</span> <span class="kw">function</span> excluir(req, res) {
+
+  <span class="cm">// Recebe o id informado na URL.</span>
+  <span class="kw">const</span> { id } = req.params;
+
+  <span class="kw">try</span> {
+
+    <span class="cm">// Verifica se o exemplar informado existe.</span>
+    <span class="kw">const</span> [exemplares] = <span class="kw">await</span> conexao.query(<span class="st">&quot;SELECT id FROM exemplar WHERE id = ?&quot;</span>, [id]);
+
+    <span class="kw">if</span> (exemplares.length === <span class="num">0</span>) {
+
+      <span class="cm">// Responde com o status 404 (não encontrado) e uma mensagem de erro.</span>
+      <span class="kw">return</span> res.status(<span class="num">404</span>).json({ erro: <span class="st">&quot;Exemplar não encontrado...&quot;</span> });
+    }
+
+    <span class="cm">// Verifica se o exemplar possui empréstimos cadastrados.</span>
+    <span class="kw">const</span> [emprestimos] = <span class="kw">await</span> conexao.query(<span class="st">&quot;SELECT id FROM emprestimo WHERE id_exemplar = ?&quot;</span>, [id]);
+
+    <span class="kw">if</span> (emprestimos.length &gt; <span class="num">0</span>) {
+
+      <span class="cm">// Responde com o status 409 (conflito) e uma mensagem de erro.</span>
+      <span class="kw">return</span> res.status(<span class="num">409</span>).json({ erro: <span class="st">&quot;Não é possível excluir o exemplar, pois ele possui empréstimos cadastrados...&quot;</span> });
+    }
+
+    <span class="cm">// Executa o SQL para excluir o exemplar.</span>
+    <span class="kw">await</span> conexao.query(<span class="st">&quot;DELETE FROM exemplar WHERE id = ?&quot;</span>, [id]);
+
+    <span class="cm">// Responde com o status 200 (sucesso) e uma mensagem de sucesso.</span>
+    res.status(<span class="num">200</span>).json({ mensagem: <span class="st">&quot;Exemplar excluído com sucesso!&quot;</span> });
+
+  } <span class="kw">catch</span> (erro) {
+
+    <span class="cm">// Mostra no terminal o erro, para o programador.</span>
+    console.log(<span class="st">&quot;Erro ao excluir o exemplar: &quot;</span> + erro.message);
+
+    <span class="cm">// Responde com o status 500 (erro no servidor da web) e uma mensagem genérica.</span>
+    res.status(<span class="num">500</span>).json({ erro: <span class="st">&quot;Não foi possível atender sua requisição...&quot;</span> });
+  }
+}</pre>
+    </div>
+    <h3>Passo 7 - Exporte a nova função do controller de exemplar</h3>
+    <p>Ainda no arquivo <code>controllers/itemController.js</code>, substitua o <code>module.exports</code> pelo bloco abaixo, que exporta também o <code>excluir</code>:</p>
+    <div class="code-block">
+      <div class="lang-tag">javascript — controllers/itemController.js<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre><span class="cm">// Exporta as funções para que as rotas possam utilizá-las.</span>
+module.exports = { cadastrar, listar, buscar, atualizar, excluir };</pre>
+    </div>
+    <h3>Passo 8 - Acrescente a rota de exclusão de exemplar</h3>
+    <p>No arquivo <code>routes/itemRoutes.js</code>, acrescente a rota <code>DELETE</code> logo abaixo da rota de atualização. O arquivo completo deve ficar assim:</p>
+    <div class="code-block">
+      <div class="lang-tag">javascript — routes/itemRoutes.js<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre><span class="cm">// Importa o Express - Framework para Servidor da Web.</span>
+<span class="kw">const</span> express = require(<span class="st">&quot;express&quot;</span>);
+
+<span class="cm">// Importa o controller de exemplar.</span>
+<span class="kw">const</span> controlador = require(<span class="st">&quot;../controllers/itemController&quot;</span>);
+
+<span class="cm">// Cria o roteador das rotas de exemplar.</span>
+<span class="kw">const</span> rotas = express.Router();
+
+<span class="cm">// Rota que cadastra um novo exemplar.</span>
+rotas.post(<span class="st">&quot;/&quot;</span>, controlador.cadastrar);
+
+<span class="cm">// Rota que lista todos os exemplares.</span>
+rotas.get(<span class="st">&quot;/&quot;</span>, controlador.listar);
+
+<span class="cm">// Rota que busca um único exemplar, de acordo com o id informado na URL.</span>
+rotas.get(<span class="st">&quot;/:id&quot;</span>, controlador.buscar);
+
+<span class="cm">// Rota que atualiza um exemplar, de acordo com o id informado na URL.</span>
+rotas.put(<span class="st">&quot;/:id&quot;</span>, controlador.atualizar);
+
+<span class="cm">// Rota que exclui um exemplar, de acordo com o id informado na URL.</span>
+rotas.delete(<span class="st">&quot;/:id&quot;</span>, controlador.excluir);
+
+<span class="cm">// Exporta as rotas para que o app.js possa utilizá-las.</span>
+module.exports = rotas;</pre>
+    </div>
+    <h3>Passo 9 - Compreender a exclusão de exemplar</h3>
+    <ul class="bullets">
+      <li>Antes de excluir, o controller verifica se o exemplar possui empréstimos, buscando pela coluna <code>id_exemplar</code>.</li>
+      <li>Se possuir, a resposta é o <code>status(409)</code>, pois a chave estrangeira do empréstimo apontaria para um exemplar que não existe mais. Essa verificação também preserva o histórico de empréstimos da biblioteca escolar.</li>
+      <li><strong>status(200)</strong> com a mensagem de sucesso confirma a exclusão.</li>
+    </ul>
+    <h3>Passo 10 - Teste a exclusão de exemplar</h3>
+    <p>Reinicie o servidor da web e, no Thunder Client, envie uma requisição <code>DELETE</code> para a URL <code>http://localhost:3000/exemplares/3</code>.</p>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      O Thunder Client deve exibir o status <code>200 OK</code> e a resposta <code>{&quot;mensagem&quot;: &quot;Exemplar excluído com sucesso!&quot;}</code>.
+    </div>
+    <p>Confira a exclusão com uma requisição <code>GET</code> para a URL <code>http://localhost:3000/exemplares/3</code>.</p>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      O Thunder Client deve exibir o status <code>404 Not Found</code> com a mensagem <code>Exemplar não encontrado...</code>, pois o exemplar não existe mais.
+    </div>
+    <p>Teste os erros abaixo, um de cada vez, com o método <code>DELETE</code>:</p>
+    <ul class="bullets">
+      <li>Envie a exclusão para a URL <code>http://localhost:3000/exemplares/1</code>, pois o exemplar 1 ainda possui empréstimos.</li>
+      <li>Envie a exclusão para a URL <code>http://localhost:3000/exemplares/99</code>, que não existe.</li>
+    </ul>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      Os erros devem devolver, na ordem, o status <code>409</code> (<code>Não é possível excluir o exemplar, pois ele possui empréstimos cadastrados...</code>) e o status <code>404</code> (<code>Exemplar não encontrado...</code>).
+    </div>
+    <h2>Exclusão de Leitor</h2>
+    <h3>Passo 11 - Acrescente a função de exclusão ao controller de leitor</h3>
+    <p>No arquivo <code>controllers/readerController.js</code>, logo acima da linha <code>// Exporta as funções para que as rotas possam utilizá-las.</code>, adicione a função abaixo:</p>
+    <div class="code-block">
+      <div class="lang-tag">javascript — controllers/readerController.js<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre><span class="cm">// Exclui um leitor, de acordo com o id informado na URL.</span>
+<span class="kw">async</span> <span class="kw">function</span> excluir(req, res) {
+
+  <span class="cm">// Recebe o id informado na URL.</span>
+  <span class="kw">const</span> { id } = req.params;
+
+  <span class="kw">try</span> {
+
+    <span class="cm">// Verifica se o leitor informado existe.</span>
+    <span class="kw">const</span> [leitores] = <span class="kw">await</span> conexao.query(<span class="st">&quot;SELECT id FROM leitor WHERE id = ?&quot;</span>, [id]);
+
+    <span class="kw">if</span> (leitores.length === <span class="num">0</span>) {
+
+      <span class="cm">// Responde com o status 404 (não encontrado) e uma mensagem de erro.</span>
+      <span class="kw">return</span> res.status(<span class="num">404</span>).json({ erro: <span class="st">&quot;Leitor não encontrado...&quot;</span> });
+    }
+
+    <span class="cm">// Verifica se o leitor possui empréstimos cadastrados.</span>
+    <span class="kw">const</span> [emprestimos] = <span class="kw">await</span> conexao.query(<span class="st">&quot;SELECT id FROM emprestimo WHERE id_leitor = ?&quot;</span>, [id]);
+
+    <span class="kw">if</span> (emprestimos.length &gt; <span class="num">0</span>) {
+
+      <span class="cm">// Responde com o status 409 (conflito) e uma mensagem de erro.</span>
+      <span class="kw">return</span> res.status(<span class="num">409</span>).json({ erro: <span class="st">&quot;Não é possível excluir o leitor, pois ele possui empréstimos cadastrados...&quot;</span> });
+    }
+
+    <span class="cm">// Executa o SQL para excluir o leitor.</span>
+    <span class="kw">await</span> conexao.query(<span class="st">&quot;DELETE FROM leitor WHERE id = ?&quot;</span>, [id]);
+
+    <span class="cm">// Responde com o status 200 (sucesso) e uma mensagem de sucesso.</span>
+    res.status(<span class="num">200</span>).json({ mensagem: <span class="st">&quot;Leitor excluído com sucesso!&quot;</span> });
+
+  } <span class="kw">catch</span> (erro) {
+
+    <span class="cm">// Mostra no terminal o erro, para o programador.</span>
+    console.log(<span class="st">&quot;Erro ao excluir o leitor: &quot;</span> + erro.message);
+
+    <span class="cm">// Responde com o status 500 (erro no servidor da web) e uma mensagem genérica.</span>
+    res.status(<span class="num">500</span>).json({ erro: <span class="st">&quot;Não foi possível atender sua requisição...&quot;</span> });
+  }
+}</pre>
+    </div>
+    <h3>Passo 12 - Exporte a nova função do controller de leitor</h3>
+    <p>Ainda no arquivo <code>controllers/readerController.js</code>, substitua o <code>module.exports</code> pelo bloco abaixo, que exporta também o <code>excluir</code>:</p>
+    <div class="code-block">
+      <div class="lang-tag">javascript — controllers/readerController.js<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre><span class="cm">// Exporta as funções para que as rotas possam utilizá-las.</span>
+module.exports = { cadastrar, listar, buscar, atualizar, excluir };</pre>
+    </div>
+    <h3>Passo 13 - Acrescente a rota de exclusão de leitor</h3>
+    <p>No arquivo <code>routes/readerRoutes.js</code>, acrescente a rota <code>DELETE</code> logo abaixo da rota de atualização. O arquivo completo deve ficar assim:</p>
+    <div class="code-block">
+      <div class="lang-tag">javascript — routes/readerRoutes.js<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre><span class="cm">// Importa o Express - Framework para Servidor da Web.</span>
+<span class="kw">const</span> express = require(<span class="st">&quot;express&quot;</span>);
+
+<span class="cm">// Importa o controller de leitor.</span>
+<span class="kw">const</span> controlador = require(<span class="st">&quot;../controllers/readerController&quot;</span>);
+
+<span class="cm">// Cria o roteador das rotas de leitor.</span>
+<span class="kw">const</span> rotas = express.Router();
+
+<span class="cm">// Rota que cadastra um novo leitor.</span>
+rotas.post(<span class="st">&quot;/&quot;</span>, controlador.cadastrar);
+
+<span class="cm">// Rota que lista todos os leitores.</span>
+rotas.get(<span class="st">&quot;/&quot;</span>, controlador.listar);
+
+<span class="cm">// Rota que busca um único leitor, de acordo com o id informado na URL.</span>
+rotas.get(<span class="st">&quot;/:id&quot;</span>, controlador.buscar);
+
+<span class="cm">// Rota que atualiza um leitor, de acordo com o id informado na URL.</span>
+rotas.put(<span class="st">&quot;/:id&quot;</span>, controlador.atualizar);
+
+<span class="cm">// Rota que exclui um leitor, de acordo com o id informado na URL.</span>
+rotas.delete(<span class="st">&quot;/:id&quot;</span>, controlador.excluir);
+
+<span class="cm">// Exporta as rotas para que o app.js possa utilizá-las.</span>
+module.exports = rotas;</pre>
+    </div>
+    <h3>Passo 14 - Compreender a exclusão de leitor</h3>
+    <ul class="bullets">
+      <li>A função segue a estrutura da exclusão de exemplar, verificando os empréstimos pela coluna <code>id_leitor</code>.</li>
+    </ul>
+    <h3>Passo 15 - Teste a exclusão de leitor</h3>
+    <p>Reinicie o servidor da web e, no Thunder Client, envie uma requisição <code>DELETE</code> para a URL <code>http://localhost:3000/leitores/3</code>.</p>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      O Thunder Client deve exibir o status <code>200 OK</code> e a resposta <code>{&quot;mensagem&quot;: &quot;Leitor excluído com sucesso!&quot;}</code>.
+    </div>
+    <p>Confira a exclusão com uma requisição <code>GET</code> para a URL <code>http://localhost:3000/leitores/3</code>.</p>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      O Thunder Client deve exibir o status <code>404 Not Found</code> com a mensagem <code>Leitor não encontrado...</code>, pois o leitor não existe mais.
+    </div>
+    <p>Teste os erros abaixo, um de cada vez, com o método <code>DELETE</code>:</p>
+    <ul class="bullets">
+      <li>Envie a exclusão para a URL <code>http://localhost:3000/leitores/1</code>, pois o leitor 1 ainda possui empréstimos.</li>
+      <li>Envie a exclusão para a URL <code>http://localhost:3000/leitores/99</code>, que não existe.</li>
+    </ul>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      Os erros devem devolver, na ordem, o status <code>409</code> (<code>Não é possível excluir o leitor, pois ele possui empréstimos cadastrados...</code>) e o status <code>404</code> (<code>Leitor não encontrado...</code>).
+    </div>
+    <h2>Exclusão de Livro</h2>
+    <h3>Passo 16 - Acrescente a função de exclusão ao controller de livro</h3>
+    <p>No arquivo <code>controllers/bookController.js</code>, logo acima da linha <code>// Exporta as funções para que as rotas possam utilizá-las.</code>, adicione a função abaixo:</p>
+    <div class="code-block">
+      <div class="lang-tag">javascript — controllers/bookController.js<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre><span class="cm">// Exclui um livro, de acordo com o id informado na URL.</span>
+<span class="kw">async</span> <span class="kw">function</span> excluir(req, res) {
+
+  <span class="cm">// Recebe o id informado na URL.</span>
+  <span class="kw">const</span> { id } = req.params;
+
+  <span class="kw">try</span> {
+
+    <span class="cm">// Verifica se o livro informado existe.</span>
+    <span class="kw">const</span> [livros] = <span class="kw">await</span> conexao.query(<span class="st">&quot;SELECT id FROM livro WHERE id = ?&quot;</span>, [id]);
+
+    <span class="kw">if</span> (livros.length === <span class="num">0</span>) {
+
+      <span class="cm">// Responde com o status 404 (não encontrado) e uma mensagem de erro.</span>
+      <span class="kw">return</span> res.status(<span class="num">404</span>).json({ erro: <span class="st">&quot;Livro não encontrado...&quot;</span> });
+    }
+
+    <span class="cm">// Verifica se o livro possui exemplares cadastrados.</span>
+    <span class="kw">const</span> [exemplares] = <span class="kw">await</span> conexao.query(<span class="st">&quot;SELECT id FROM exemplar WHERE id_livro = ?&quot;</span>, [id]);
+
+    <span class="kw">if</span> (exemplares.length &gt; <span class="num">0</span>) {
+
+      <span class="cm">// Responde com o status 409 (conflito) e uma mensagem de erro.</span>
+      <span class="kw">return</span> res.status(<span class="num">409</span>).json({ erro: <span class="st">&quot;Não é possível excluir o livro, pois ele possui exemplares cadastrados...&quot;</span> });
+    }
+
+    <span class="cm">// Executa o SQL para excluir o livro.</span>
+    <span class="kw">await</span> conexao.query(<span class="st">&quot;DELETE FROM livro WHERE id = ?&quot;</span>, [id]);
+
+    <span class="cm">// Responde com o status 200 (sucesso) e uma mensagem de sucesso.</span>
+    res.status(<span class="num">200</span>).json({ mensagem: <span class="st">&quot;Livro excluído com sucesso!&quot;</span> });
+
+  } <span class="kw">catch</span> (erro) {
+
+    <span class="cm">// Mostra no terminal o erro, para o programador.</span>
+    console.log(<span class="st">&quot;Erro ao excluir o livro: &quot;</span> + erro.message);
+
+    <span class="cm">// Responde com o status 500 (erro no servidor da web) e uma mensagem genérica.</span>
+    res.status(<span class="num">500</span>).json({ erro: <span class="st">&quot;Não foi possível atender sua requisição...&quot;</span> });
+  }
+}</pre>
+    </div>
+    <h3>Passo 17 - Exporte a nova função do controller de livro</h3>
+    <p>Ainda no arquivo <code>controllers/bookController.js</code>, substitua o <code>module.exports</code> pelo bloco abaixo, que exporta também o <code>excluir</code>:</p>
+    <div class="code-block">
+      <div class="lang-tag">javascript — controllers/bookController.js<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre><span class="cm">// Exporta as funções para que as rotas possam utilizá-las.</span>
+module.exports = { cadastrar, listar, buscar, atualizar, excluir };</pre>
+    </div>
+    <h3>Passo 18 - Acrescente a rota de exclusão de livro</h3>
+    <p>No arquivo <code>routes/bookRoutes.js</code>, acrescente a rota <code>DELETE</code> logo abaixo da rota de atualização. O arquivo completo deve ficar assim:</p>
+    <div class="code-block">
+      <div class="lang-tag">javascript — routes/bookRoutes.js<button class="copy-btn" onclick="copiar(this)">Copiar</button></div>
+      <pre><span class="cm">// Importa o Express - Framework para Servidor da Web.</span>
+<span class="kw">const</span> express = require(<span class="st">&quot;express&quot;</span>);
+
+<span class="cm">// Importa o controller de livro.</span>
+<span class="kw">const</span> controlador = require(<span class="st">&quot;../controllers/bookController&quot;</span>);
+
+<span class="cm">// Cria o roteador das rotas de livro.</span>
+<span class="kw">const</span> rotas = express.Router();
+
+<span class="cm">// Rota que cadastra um novo livro.</span>
+rotas.post(<span class="st">&quot;/&quot;</span>, controlador.cadastrar);
+
+<span class="cm">// Rota que lista todos os livros.</span>
+rotas.get(<span class="st">&quot;/&quot;</span>, controlador.listar);
+
+<span class="cm">// Rota que busca um único livro, de acordo com o id informado na URL.</span>
+rotas.get(<span class="st">&quot;/:id&quot;</span>, controlador.buscar);
+
+<span class="cm">// Rota que atualiza um livro, de acordo com o id informado na URL.</span>
+rotas.put(<span class="st">&quot;/:id&quot;</span>, controlador.atualizar);
+
+<span class="cm">// Rota que exclui um livro, de acordo com o id informado na URL.</span>
+rotas.delete(<span class="st">&quot;/:id&quot;</span>, controlador.excluir);
+
+<span class="cm">// Exporta as rotas para que o app.js possa utilizá-las.</span>
+module.exports = rotas;</pre>
+    </div>
+    <h3>Passo 19 - Compreender a exclusão de livro</h3>
+    <ul class="bullets">
+      <li>A função segue a mesma estrutura, mas verifica os exemplares pela coluna <code>id_livro</code>, pois o exemplar é a tabela que depende do livro.</li>
+    </ul>
+    <h3>Passo 20 - Teste a exclusão de livro</h3>
+    <p>Reinicie o servidor da web e, no Thunder Client, envie uma requisição <code>DELETE</code> para a URL <code>http://localhost:3000/livros/3</code>.</p>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      O Thunder Client deve exibir o status <code>200 OK</code> e a resposta <code>{&quot;mensagem&quot;: &quot;Livro excluído com sucesso!&quot;}</code>.
+    </div>
+    <p>Confira a exclusão com uma requisição <code>GET</code> para a URL <code>http://localhost:3000/livros/3</code>.</p>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      O Thunder Client deve exibir o status <code>404 Not Found</code> com a mensagem <code>Livro não encontrado...</code>, pois o livro não existe mais.
+    </div>
+    <p>Teste os erros abaixo, um de cada vez, com o método <code>DELETE</code>:</p>
+    <ul class="bullets">
+      <li>Envie a exclusão para a URL <code>http://localhost:3000/livros/1</code>, pois o livro 1 ainda possui exemplares.</li>
+      <li>Envie a exclusão para a URL <code>http://localhost:3000/livros/99</code>, que não existe.</li>
+    </ul>
+    <div class="callout tip">
+      <strong>Esperado nesta etapa</strong>
+      Os erros devem devolver, na ordem, o status <code>409</code> (<code>Não é possível excluir o livro, pois ele possui exemplares cadastrados...</code>) e o status <code>404</code> (<code>Livro não encontrado...</code>).
     </div>
     <h2>Conferência Final</h2>
     <h3>Passo 21 - Estrutura atual de pastas do projeto</h3>
